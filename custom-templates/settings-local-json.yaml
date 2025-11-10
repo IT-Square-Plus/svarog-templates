@@ -1,0 +1,113 @@
+---
+# Claude Code Settings - Tool Permissions
+# This file defines available tools and their permissions for Claude Code
+# Format: Tool name -> Sub-commands -> Specific patterns
+
+tools-list:
+  Bash:
+    curl:
+      description: "HTTP requests with curl"
+      patterns:
+        - "curl -X GET:*"
+        - "curl -X POST:*"
+        - "curl -X PUT:*"
+        - "curl -X PATCH:*"
+        - "curl -X DELETE:*"
+    wget:
+      description: "File downloads with wget"
+      patterns:
+        - "wget -O:*"
+        - "wget -c:*"
+        - "wget -b:*"
+        - "wget --limit-rate:*"
+    docker:
+      description: "Docker commands"
+      patterns:
+        - "docker run:*"
+        - "docker ps:*"
+        - "docker images:*"
+        - "docker start:*"
+        - "docker stop:*"
+        - "docker exec:*"
+        - "docker rm:*"
+        - "docker rmi:*"
+        - "docker build:*"
+        - "docker logs:*"
+        - "docker pull:*"
+        - "docker push:*"
+        - "docker network:*"
+        - "docker volume:*"
+        - "docker system:*"
+        - "docker compose:*"
+    git:
+      description: "Git version control"
+      patterns:
+        - "git add:*"
+        - "git commit:*"
+        - "git push:*"
+        - "git pull:*"
+        - "git status:*"
+        - "git log:*"
+        - "git diff:*"
+        - "git branch:*"
+        - "git checkout:*"
+        - "git merge:*"
+    npm:
+      description: "NPM package manager"
+      patterns:
+        - "npm install:*"
+        - "npm run:*"
+        - "npm start:*"
+        - "npm test:*"
+        - "npm build:*"
+    python:
+      description: "Python interpreter"
+      patterns:
+        - "python:*"
+        - "python3:*"
+        - "pip install:*"
+        - "pip list:*"
+    pytest:
+      description: "Python testing"
+      patterns:
+        - "pytest:*"
+    tree:
+      description: "Directory tree viewer"
+      patterns:
+        - "tree:*"
+    find:
+      description: "File search"
+      patterns:
+        - "find:*"
+
+  Read:
+    env_files:
+      description: "Environment configuration files"
+      patterns:
+        - "Read(.env)"
+        - "Read(.env.*)"
+    secrets:
+      description: "Secret and credential files"
+      patterns:
+        - "Read(./secrets/**)"
+        - "Read(**/credentials.json)"
+        - "Read(**/secrets.yaml)"
+    ssh_keys:
+      description: "SSH private keys"
+      patterns:
+        - "Read(~/.ssh/id_rsa)"
+        - "Read(~/.ssh/id_ed25519)"
+
+  Write:
+    system_files:
+      description: "System configuration files"
+      patterns:
+        - "Write(/etc/**)"
+        - "Write(/usr/**)"
+        - "Write(/var/**)"
+
+  WebSearch:
+    all:
+      description: "Allow all web searches"
+      patterns:
+        - "WebSearch"

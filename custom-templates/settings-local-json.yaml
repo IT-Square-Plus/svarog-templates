@@ -1,12 +1,13 @@
 ---
 # Claude Code Settings - Tool Permissions
-# This file defines available tools and their permissions for Claude Code
-# Format: Tool name -> Sub-commands -> Specific patterns
+# Format:
+# - 3-level tools (Bash): Tool -> Subcommand -> Patterns
+# - 2-level tools (Read, Write, WebFetch): Tool -> Patterns
 
 tools-list:
+  # 3-level: Bash with subcommands
   Bash:
     curl:
-      description: "HTTP requests with curl"
       patterns:
         - "curl -X GET:*"
         - "curl -X POST:*"
@@ -14,14 +15,12 @@ tools-list:
         - "curl -X PATCH:*"
         - "curl -X DELETE:*"
     wget:
-      description: "File downloads with wget"
       patterns:
         - "wget -O:*"
         - "wget -c:*"
         - "wget -b:*"
         - "wget --limit-rate:*"
     docker:
-      description: "Docker commands"
       patterns:
         - "docker run:*"
         - "docker ps:*"
@@ -40,7 +39,6 @@ tools-list:
         - "docker system:*"
         - "docker compose:*"
     git:
-      description: "Git version control"
       patterns:
         - "git add:*"
         - "git commit:*"
@@ -53,61 +51,39 @@ tools-list:
         - "git checkout:*"
         - "git merge:*"
     npm:
-      description: "NPM package manager"
       patterns:
         - "npm install:*"
         - "npm run:*"
         - "npm start:*"
         - "npm test:*"
         - "npm build:*"
-    python:
-      description: "Python interpreter"
-      patterns:
-        - "python:*"
-        - "python3:*"
-        - "pip install:*"
-        - "pip list:*"
-    pytest:
-      description: "Python testing"
-      patterns:
-        - "pytest:*"
     tree:
-      description: "Directory tree viewer"
       patterns:
         - "tree:*"
     find:
-      description: "File search"
       patterns:
         - "find:*"
 
+  # 2-level: Read with direct patterns
   Read:
-    env_files:
-      description: "Environment configuration files"
-      patterns:
-        - "Read(.env)"
-        - "Read(.env.*)"
-    secrets:
-      description: "Secret and credential files"
-      patterns:
-        - "Read(./secrets/**)"
-        - "Read(**/credentials.json)"
-        - "Read(**/secrets.yaml)"
-    ssh_keys:
-      description: "SSH private keys"
-      patterns:
-        - "Read(~/.ssh/id_rsa)"
-        - "Read(~/.ssh/id_ed25519)"
+    patterns:
+      - ".env"
+      - ".env.*"
+      - "./secrets/**"
+      - "**/credentials.json"
+      - "**/secrets.yaml"
+      - "~/.ssh/id_rsa"
+      - "~/.ssh/id_ed25519"
 
+  # 2-level: Write with direct patterns
   Write:
-    system_files:
-      description: "System configuration files"
-      patterns:
-        - "Write(/etc/**)"
-        - "Write(/usr/**)"
-        - "Write(/var/**)"
+    patterns:
+      - "/etc/**"
+      - "/usr/**"
+      - "/var/**"
 
-  WebSearch:
-    all:
-      description: "Allow all web searches"
-      patterns:
-        - "WebSearch"
+  # 2-level: WebFetch with direct patterns
+  WebFetch:
+    patterns:
+      - "wikipedia.org"
+      - "*.wikipedia.org"

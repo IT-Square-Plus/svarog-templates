@@ -1,0 +1,7 @@
+{
+  "command": "npx",
+  "args": ["-y", "@modelcontextprotocol/server-filesystem", "${PROJECT_ROOT}"],
+  "metadata": {
+    "url": "https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem"
+  }
+}

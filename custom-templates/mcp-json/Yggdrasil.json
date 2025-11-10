@@ -1,0 +1,8 @@
+{
+  "type": "http",
+  "url": "http://localhost:8080/mcp-${PROJECT_SLUG}",
+  "metadata": {
+    "description": "Yggdrasil MCP Memory Server",
+    "url": "https://github.com/IT-Square-Plus/yggdrasil"
+  }
+}

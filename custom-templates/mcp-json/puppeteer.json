@@ -1,0 +1,7 @@
+{
+  "command": "npx",
+  "args": ["-y", "@modelcontextprotocol/server-puppeteer"],
+  "metadata": {
+    "url": "https://github.com/modelcontextprotocol/servers/tree/main/src/puppeteer"
+  }
+}
